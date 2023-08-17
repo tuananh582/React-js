@@ -4,26 +4,42 @@ const messages = [
   "Apply for jobs 💼",
   "Invest your new income 🤑",
 ];
-
 export default function App(){
+  return (
+    <div>
+      <Steps/>
+      <Steps/>
+    </div>
+  )
+}
+
+ function Steps(){
   const [step,setStep]= useState(1)
   const [test,setTest]=useState({name:'Tuan Anh'})
   // console.log(arr)
+  const [isOpen,setIsOpen]=useState(true)
 
 
   function handlePrevious (){
     if(step>1)
-    setStep(step-1)
+    setStep((s)=>s-1)
     setTest({name:'Tuan Anh'})
   }
   function handleNext (){
-     if(step<3) setStep(step+1)
+     if(step<3){
+      //  setStep((s)=>s+1)
+       setStep((s)=>s+1)
+      }
      setTest({name:'Phuong Anh'})
 
   }
 
 
-  return <div className="steps">Hello React
+  return(
+  <div>
+    <button className='close' onClick={()=>setIsOpen((is)=>!is)}>&times;</button>
+   {isOpen &&(
+   <div className="steps">
     <div className="numbers">
       <div className={step>=1 ? "active":'' }>1</div>
       <div className={step>=2 ? "active":'' }>2</div>
@@ -36,4 +52,10 @@ export default function App(){
  
       </div>
       </div>
+   
+   )}
+
+    </div>
+    )
+
   }
