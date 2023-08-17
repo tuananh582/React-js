@@ -88,6 +88,7 @@ const pizzaData = [
   )
 }
 function Pizza(props){
+  if(props.pizzaObj.soldOut) return null;
   console.log(props)
    return <li className='pizza'>
        <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
@@ -105,23 +106,34 @@ function Pizza(props){
   const isOpen = hour<=openHour&& hour<=closeHour
   // if(hour>=openHour&&hour<=closeHour) alert("we're curretly open ! ")
   // else alert("Sorry we're closed")
+
+  //Bonus
+  // if(!isOpen)
+  // return (
+  //     <p>Closed</p>
+  // )
   console.log(isOpen)
     // return React.createElement('footer',null,"We're currently open !")
     return(
       <footer className='footer'>
         {isOpen?(
-          <div className='order'>
-        <p>We're open until {closeHour}:00. Come vist us or ordere online</p>
-        <button className='btn'>Order</button>
-        </div>
+          <Order closeHour={closeHour} />
         ):<p>We're happy to welcome you between {openHour}:00 and {closeHour}:00 </p>}
       </footer>
     )
     /* //  <footer>{new Date().toLocaleTimeString()}.We're currently open !</footer> */
-    
-     
-
   }
+
+  function Order(props){
+      return <div className='order'>
+         
+        <p>We're open until {props.closeHour}:00. Come vist us or ordere online</p>
+        <button className='btn'>Order</button>
+        
+         </div>
+  }
+
+
 
 
 
