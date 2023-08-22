@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import { PropTypes } from 'prop-types';
     const containerStyle={
         display:'flex',
         alignItems:'center',
@@ -10,7 +10,15 @@ const starContainerStyle={
 
 }
 
-
+StarRating.propTypes={
+    maxRating: PropTypes.number,
+    defaultRating:PropTypes.number,
+    color:PropTypes.string,
+    size:PropTypes.number,
+    message:PropTypes.array,
+    className:PropTypes.string,
+    onSetRating:PropTypes.func,
+}
 function StarRating({maxRating=5,color="#fcc419",size=48,className="",message=[],defaultRating=0,onSetRating}) {
     const [rating,setRating]=useState(defaultRating)
     const [tempRating,setTemprating]=useState(0);
@@ -45,7 +53,7 @@ function Star({onRate,full,onHoverIn,onHoverOut,color,size}){
         cursor:'pointer',
     }
     return(
-<span role="button" style={starStyle} onClick={onRate} onMouseEnter={onRate} onMouseLeave={onHoverOut}>
+<span role="button" style={starStyle} onClick={onRate} onMouseEnter={onHoverIn} onMouseLeave={onHoverOut}>
  {full ?<svg
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 20 20"
