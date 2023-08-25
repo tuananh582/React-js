@@ -24,7 +24,7 @@ function StarRating({maxRating=5,color="#fcc419",size=48,className="",message=[]
     const [tempRating,setTemprating]=useState(0);
     function handleRating(rating){
         setRating(rating)
-        // onSetRating(rating)
+        onSetRating(rating)
     }
     const textStyle={
         lineHeight:'1',
